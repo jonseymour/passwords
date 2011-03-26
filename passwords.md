@@ -107,9 +107,9 @@ you may be able to recover the password from the sequence.
 
 INSTALLATION
 ============
-1. save this <a href="passwords.html">file</a> to your local disk
-2. verify that your copy of passwords.html matches the MD5 sum of a trusted version of this file.
-3. open that copy in your browser
+1. save [https://github.com/jonseymour/passwords/blob/master/passwords.html](https://github.com/jonseymour/passwords/blob/master/passwords.md5) to your local disk
+2. verify that your copy of passwords.html matches the MD5 sum of a trusted version of this file as documented by [https://github.com/jonseymour/passwords/blob/master/versions.txt](https://github.com/jonseymour/passwords/blob/master/versions.txt).
+3. open the saved copy in your browser
 4. optionally, modify the salt to some public, but arbitrary value
 5. save the generated bookmark as a link 
 
@@ -133,8 +133,8 @@ ${salt} parameter.
 
 VERSIONS
 ========
-* <a href="passwords.md5">Current version MD5</a>.
-* <a href="versions.txt">Previous versions.</a>
+* [Current version MD5](https://github.com/jonseymour/passwords/blob/master/passwords.md5)
+* [Previous version MD5s](https://github.com/jonseymour/passwords/blob/master/versions.txt)
 
 AUTHOR
 ======
