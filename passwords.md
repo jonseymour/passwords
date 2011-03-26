@@ -614,9 +614,15 @@ function bit_rol(num, cnt)
       var tmp="password generator"
       if (form.user.value != '') {
           tmp = tmp + " for " + form.user.value
+          if (form.host.value != '') {
+              tmp = tmp + "@"
+          }
       }
       if (form.host.value != '') {
-          tmp = tmp + " @ " + form.host.value
+          if (form.user.value == '') {
+             tmp = tmp + ' ';
+          }
+          tmp = tmp + form.host.value
       }
       return tmp;
    }
