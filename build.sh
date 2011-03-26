@@ -11,7 +11,7 @@ generate()
     test -n "$(which markdown) 2>/dev/null" || die "please install markdown"
     test -f "passwords.md" || die "passwords.md must be in the current directory"
     if ! {
-	    echo "<html><body>" &&
+	    echo "<html><head><title id="title">password generator</title><head></body>" &&
 	    markdown passwords.md &&
 	    echo "</body></html>"
 	} > passwords.html &&
