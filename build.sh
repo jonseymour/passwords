@@ -24,10 +24,13 @@ generate()
 generate_README()
 {
     md5sum=$1
+    user=jonseymour
+    repo=passwords
+    branch=master
 cat > README.md <<EOF
 README
 ======
-The MD5 of the latest version of <a href="passwords-${md5sum}.html">passwords.html</a> is $md5sum. 
+The MD5 of the latest version of <a href="/${user}/${repo}/raw/${branch}/passwords.html">passwords.html</a> is $md5sum. 
 
 For more information about this project, refer to the home page.
 EOF
