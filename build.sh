@@ -30,7 +30,8 @@ generate_README()
 cat > README.md <<EOF
 README
 ======
-The MD5 of the latest version of <a href="/${user}/${repo}/raw/${branch}/passwords.html">passwords.html</a> is $md5sum. 
+The MD5 of the latest version of <a href="/${user}/${repo}/raw/${branch}/passwords.html">passwords.html</a> is $md5sum. The self-signed version
+of this file is found here - <a href="/${user}/${repo}/raw/${branch}/passwords-${md5sum}.html">/${user}/${repo}/raw/${branch}/password-${md5sum}.html</a> 
 
 For more information about this project, refer to the home page.
 EOF
