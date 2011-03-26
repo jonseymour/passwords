@@ -29,7 +29,11 @@ sign()
     md5sum=$(cat passwords.html | md5sum | cut -f1 -d' ') || die "md5 generation failed"
     echo $md5sum > passwords.md5 || die "saving md5 sum failed"
     cp passwords.html passwords-${md5sum}.html || die "saving versioned copy failed" 
-    echo  "$(date "+%Y%m%dT%H%M%S") ${md5sum}" >> versions.txt || die "updating versions failed"n
+    if ! grep $md5sum versions.txt >/dev/null 2>&1
+    then
+	echo  "$(date "+%Y%m%dT%H%M%S") ${md5sum}" >> versions.txt || die "updating versions failed"n
+    fi
+    echo $md5sum
 }
 
 release()
