@@ -10,7 +10,11 @@ generate()
 {
     test -n "$(which markdown) 2>/dev/null" || die "please install markdown"
     test -f "passwords.md" || die "passwords.md must be in the current directory"
-    if ! markdown passwords.md > passwords.html && 
+    if ! {
+	    echo "<html><body>" &&
+	    markdown passwords.md &&
+	    echo "</body></html>"
+	} > passwords.html &&
 	test -f "passwords.html" 
     then
 	die "build of passwords.html failed";
