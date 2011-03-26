@@ -107,7 +107,7 @@ you may be able to recover the password from the sequence.
 
 INSTALLATION
 ============
-1. save this file to your local disk
+1. save this <a href="passwords.html">file</a> to your local disk
 2. verify that your copy of passwords.html matches the MD5 sum of a trusted version of this file.
 3. open that copy in your browser
 4. optionally, modify the salt to some public, but arbitrary value
