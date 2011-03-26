@@ -49,6 +49,10 @@
 <dd>
 <input name="salt" type="text">
 </dd>
+<dt>auto reset and clear</dt>
+<dd>
+<input name="auto" type="checkbox" checked="checked">enabled
+</dd>
 <dt>messages</dt>
 <dd>
 <pre id="messages"></pre>
@@ -568,20 +572,40 @@ function bit_rol(num, cnt)
    var maxseekcount=1024;
    var count=0;
    var search;
+   var timer;
 
    function read_form()
    {
-      output=form['output'].value;
-      maxseekcount=parseInt(form.maxseekcount.value);
-      search=form['search'].value;
+	message='';
+	output=form.output.value;
+	maxseekcount=parseInt(form.maxseekcount.value);
+	search=form['search'].value;
+   }
+
+   function clear_sensitive()
+   {
+       try {
+	    var orig=form.secret.value+form.secret_confirm.value+form.output.value+form.search.value;
+	    output='';
+	    form.secret.value='';
+	    form.secret_confirm.value='';
+	    form.output.value='';
+	    form.search.value='';
+	    if (orig != '') {
+		message = 'sensitive values cleared by timeout';
+	    }
+	} catch (e) {
+	    message = 'timeout failed to clear sensitive values';
+	}
+	update_form();
    }
 
    function update_form()
    {
       if (form.show.checked) {
-         form['output'].type="text";
+         form.output.type="text";
       } else {
-         form['output'].type="password";
+         form.output.type="password";
       }
       if (form.secret.value == form.secret_confirm.value) {
          confirmedPanel.innerHTML='confirmed'
@@ -595,6 +619,12 @@ function bit_rol(num, cnt)
       bookmarkPanel.innerHTML="<a alt='bookmark' href='"+bookmark_url()+"'>"+bookmark_title()+"</a>";
       bookmarkLinkPanel.innerHTML=bookmark_url();
       title.innerHTML=bookmark_title();
+      if (timer) {
+          window.clearTimeout(timer);
+      }
+      if (form.auto.checked) {
+	  timer = window.setTimeout(clear_sensitive, 60000);
+      }
    }
 
    function bookmark_url()
