@@ -21,11 +21,22 @@ generate()
     fi
 }
 
+generate_README()
+{
+    md5sum=$1
+cat > README.md <<EOF
+README
+======
+The MD5 of the latest version of <a href="passwords-${md5sum}.html">passwords.html</a> is $md5sum. 
+
+For more information about this project, refer to the home page.
+EOF
+}
+
 sign()
 {
     test -n "$(which md5sum) 2>/dev/mull" || die "please install an md5sum implementation"
     test -f "passwords.html" || build
-    git checkout versions.txt || die "unable to checkout versions.txt"
     md5sum=$(cat passwords.html | md5sum | cut -f1 -d' ') || die "md5 generation failed"
     echo $md5sum > passwords.md5 || die "saving md5 sum failed"
     cp passwords.html passwords-${md5sum}.html || die "saving versioned copy failed" 
@@ -33,12 +44,15 @@ sign()
     then
 	echo  "$(date "+%Y%m%dT%H%M%S") ${md5sum}" >> versions.txt || die "updating versions failed"n
     fi
+    generate_README $md5sum
     echo $md5sum
 }
 
 release()
 {
     generate
+    git checkout versions.txt || die "unable to checkout versions.txt"
+    ls passwords-*.html 2>/dev/null | xargs -n1 rm || die "remove previously signed copies"
     sign
 }
 
