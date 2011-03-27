@@ -9,32 +9,25 @@ die()
 generate()
 {
     test -n "$(which markdown) 2>/dev/null" || die "please install markdown"
-    test -f "passwords.md" || die "passwords.md must be in the current directory"
     if ! {
-	    echo "<html><head><title id="title">password generator</title><head></body>" &&
-	    markdown passwords.md &&
-	    echo "</body></html>"
-	} > passwords.html &&
+	    cat > passwords.html <<EOF
+<html>
+  <head>
+    <title id='title'>password generator</title>
+    $(cat md5.html)
+    $(cat controller.html)
+  </head>
+  <body>
+    $(cat form.html)
+    $(markdown README.md)
+  </body>
+</html>
+EOF
+	} &&
 	test -f "passwords.html" 
     then
 	die "build of passwords.html failed";
     fi
-}
-
-generate_README()
-{
-    md5sum=$1
-    user=jonseymour
-    repo=passwords
-    branch=master
-cat > README.md <<EOF
-README
-======
-The MD5 of the latest version of <a href="/${user}/${repo}/raw/${branch}/passwords.html">passwords.html</a> is $md5sum. The self-signed version
-of this file is found here - <a href="/${user}/${repo}/raw/${branch}/passwords-${md5sum}.html">/${user}/${repo}/raw/${branch}/password-${md5sum}.html</a>
-
-For more information about this project, refer to the home page.
-EOF
 }
 
 sign()
@@ -48,7 +41,6 @@ sign()
     then
 	echo  "$(date "+%Y%m%dT%H%M%S") ${md5sum}" >> versions.txt || die "updating versions failed"n
     fi
-    generate_README $md5sum
     echo $md5sum
 }
 
