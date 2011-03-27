@@ -16,28 +16,27 @@
 <dt>secret</dt>
 <dd>
 <input name="secret" type="password">
-<input name="secret_confirm" type="password">
 <input name="clear" value="clear" type="button">
+<dt>confirm</dt>
+<dd>
+<input name="secret_confirm" type="password">
 <span id="confirmed">confirmed</span>
 </dd>
 <dt>output</dt>
 <dd>
 <input name="output" type="password">
 <input name="show" value="true" type="checkbox">show
-<input name="prev" value="prev" type="button">
 <input name="next" value="next" type="button">
+&nbsp;
+<input name="prev" value="prev" type="button">
 <input name="reset" value="reset" type="button">
 </dd>
 </dl>
 </div>
-<a id='expand-advanced' style="display: none;" href='#'>show advanced controls</a>
+<a id='expand-advanced' style="display: none;" onclick='return false;'>show advanced controls</a>
 <div id="advanced">
-<a id='collapse-advanced' style="display: none;" href='#'>hide advanced controls</a>
+<a id='collapse-advanced' style="display: none;"  onclick='return false;'>hide advanced controls</a>
 <dl id="advanced">
-<dt>bookmark</dt>
-<dd id="bookmark"></dd>
-<dt>bookmark link</dt>
-<dd id="bookmark-link"></dd>
 <dt>initial template</dt>
 <dd>
 <input name="initial_template" size="64" type="text">
