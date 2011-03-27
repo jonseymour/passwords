@@ -57,7 +57,7 @@ function controller(){
       form.output.value=output;
       countPanel.innerHTML=count;
       messagePanel.innerHTML=message;
-      location.href=bookmark_url();
+      location.replace(bookmark_url());
       title.innerHTML=bookmark_title();
       if (timer) {
 	  window.clearTimeout(timer);
