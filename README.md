@@ -48,8 +48,8 @@ you may be able to recover the password from the sequence, even if you have actu
 
 INSTALLATION
 ============
-1. save https://github.com/jonseymour/passwords/raw/master/passwords.html to your local disk
-2. verify that your copy of passwords.html matches the MD5 sum of a trusted version of this file as documented by https://github.com/jonseymour/passwords/raw/master/versions.txt
+1. save https://github.com/jonseymour/passwords/raw/release/passwords.html to your local disk
+2. verify that your copy of passwords.html matches the MD5 sum of a trusted version of this file as documented by https://github.com/jonseymour/passwords/raw/release/versions.txt
 3. open the saved copy in your browser
 4. optionally, modify the salt to some public, but arbitrary value
 5. save the generated bookmark as a link 
@@ -79,11 +79,11 @@ Should you trust this page to manage generated passwords securely?
 Not automatically. If a miscreant can arrange to make you load a maliciously altered copy of this page, your secret
 and your passwords may be exposed.
 
-However, if the page you are reading has an MD5 sum listed in https://github.com/jonseymour/passwords/raw/master/versions.txt then
+However, if the page you are reading has an MD5 sum listed in https://github.com/jonseymour/passwords/raw/release/versions.txt then
 the claims listed in the section below should be true.
 CLAIMS
 ======
-These claims apply only to pages that have an MD5 sum listed in https://github.com/jonseymour/passwords/raw/master/versions.txt. Anyone technically competent to do so is invited to verify that these claims are, in fact, true.
+These claims apply only to pages that have an MD5 sum listed in https://github.com/jonseymour/passwords/raw/release/versions.txt. Anyone technically competent to do so is invited to verify that these claims are, in fact, true.
 
 Such a page:
 
@@ -96,8 +96,9 @@ You should be aware that any use of the generated bookmark link may expose any v
 
 VERSIONS
 ========
-* Current version MD5 - https://github.com/jonseymour/passwords/raw/master/passwords.md5
-* Previous version MD5s - https://github.com/jonseymour/passwords/raw/master/versions.txt
+* Latest version - https://github.com/jonseymour/passwords/raw/release/
+* Latest version MD5 - https://github.com/jonseymour/passwords/raw/release/passwords.md5
+* Previous version MD5s - https://github.com/jonseymour/passwords/raw/release/versions.txt
 
 AUTHOR
 ======
