@@ -1,5 +1,5 @@
-<script type="text/javascript">
-window.onload=function(){
+function controller(){
+
    var form = document.forms["generator"];
    var messagePanel = document.getElementById("messages");
    var countPanel = document.getElementById("count");
@@ -7,6 +7,9 @@ window.onload=function(){
    var bookmarkLinkPanel = document.getElementById("bookmark-link");
    var confirmedPanel = document.getElementById("confirmed");
    var title = document.getElementById("title");
+   var collapseAdvanced = document.getElementById("collapse-advanced");
+   var expandAdvanced = document.getElementById("expand-advanced");
+   var advanced=document.getElementById("advanced");
    var message="";
    var output="";
    var maxseekcount=1024;
@@ -200,4 +203,4 @@ window.onload=function(){
    update_form();
 
 };
-</script>
+
