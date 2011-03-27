@@ -1,12 +1,13 @@
-<script type="text/javascript">
-window.onload=function(){
+function controller(){
+
    var form = document.forms["generator"];
    var messagePanel = document.getElementById("messages");
    var countPanel = document.getElementById("count");
-   var bookmarkPanel = document.getElementById("bookmark");
-   var bookmarkLinkPanel = document.getElementById("bookmark-link");
    var confirmedPanel = document.getElementById("confirmed");
    var title = document.getElementById("title");
+   var collapseAdvanced = document.getElementById("collapse-advanced");
+   var expandAdvanced = document.getElementById("expand-advanced");
+   var advanced=document.getElementById("advanced");
    var message="";
    var output="";
    var maxseekcount=1024;
@@ -43,24 +44,23 @@ window.onload=function(){
    function update_form()
    {
       if (form.show.checked) {
-         form.output.type="text";
+	 form.output.type="text";
       } else {
-         form.output.type="password";
+	 form.output.type="password";
       }
       if (form.secret.value == form.secret_confirm.value) {
-         confirmedPanel.innerHTML='confirmed'
+	  confirmedPanel.innerHTML=form.secret.value == '' ? '' : 'ok';
       } else {
-         confirmedPanel.innerHTML='not confirmed'
+	 confirmedPanel.innerHTML='not confirmed'
       }
       form.maxseekcount.value=maxseekcount;
       form.output.value=output;
       countPanel.innerHTML=count;
       messagePanel.innerHTML=message;
-      bookmarkPanel.innerHTML="<a alt='bookmark' href='"+bookmark_url()+"'>"+bookmark_title()+"</a>";
-      bookmarkLinkPanel.innerHTML=bookmark_url();
+      location.href=bookmark_url();
       title.innerHTML=bookmark_title();
       if (timer) {
-          window.clearTimeout(timer);
+	  window.clearTimeout(timer);
       }
       if (form.auto.checked) {
 	  timer = window.setTimeout(clear_sensitive, 60000);
@@ -71,28 +71,32 @@ window.onload=function(){
    {
       var x=location.href.indexOf('?');
       var uri=x >= 0 ? location.href.substring(0,x) : location.href;
-      return uri
-		  +"?initial_template="+form.initial_template.value
-		  +"&next_template="+form.next_template.value
-		  +"&host="+form.host.value
-		  +"&user="+form.user.value
-		  +"&salt="+form.salt.value;
+      if (uri.lastIndexOf('#') != uri.length-1) {
+	  uri=uri + '#';
+      }
+      return uri  
+	  +"?"
+	  +"&user="+form.user.value
+	  +"&host="+form.host.value
+	  +"&salt="+form.salt.value
+	  +"&initial_template="+form.initial_template.value
+	  +"&next_template="+form.next_template.value;
    }
 
    function bookmark_title()
    {
       var tmp="password generator"
       if (form.user.value != '') {
-          tmp = tmp + " for " + form.user.value
-          if (form.host.value != '') {
-              tmp = tmp + "@"
-          }
+	  tmp = tmp + " for " + form.user.value
+	  if (form.host.value != '') {
+	      tmp = tmp + "@"
+	  }
       }
       if (form.host.value != '') {
-          if (form.user.value == '') {
-             tmp = tmp + ' ';
-          }
-          tmp = tmp + form.host.value
+	  if (form.user.value == '') {
+	     tmp = tmp + ' ';
+	  }
+	  tmp = tmp + form.host.value
       }
       return tmp;
    }
@@ -100,16 +104,16 @@ window.onload=function(){
    function cycle()
    {
       var template = 
-        (output=='') 
-        ? form.initial_template.value      
-        : form.next_template.value;
+	(output=='')
+	? form.initial_template.value
+	: form.next_template.value;
       var tmp;
 
       if (output!='') {
-         tmp=form.next_template.value.replace('\${secret}', form.secret.value);
-         tmp=tmp.replace('\${output}', output);
+	 tmp=form.next_template.value.replace('\${secret}', form.secret.value);
+	 tmp=tmp.replace('\${output}', output);
       } else {
-         tmp=form.initial_template.value.replace('\${secret}', form.secret.value);
+	 tmp=form.initial_template.value.replace('\${secret}', form.secret.value);
       }
 
       tmp=tmp.replace('\${user}', form.user.value);
@@ -134,7 +138,7 @@ window.onload=function(){
       count=0;
       output='';
       while (count < maxseekcount) {
-         cycle();
+	 cycle();
       }
       update_form();
       return false;
@@ -143,11 +147,11 @@ window.onload=function(){
    form.seek.onclick=function() {
       read_form();
       if (count >= maxseekcount) {
-         message="to go further, adjust max count";
+	 message="to go further, adjust max count";
       } else {
-         while (count < maxseekcount && (output != search || search == '') ) {
-            cycle();
-         }
+	 while (count < maxseekcount && (output != search || search == '') ) {
+	    cycle();
+	 }
       }
       update_form();
    }
@@ -181,12 +185,12 @@ window.onload=function(){
    {
       var x=location.href.indexOf(p+"=");
       if (x>=0) {
-         var y=location.href.indexOf('&', x+1);
-         return y >= 0 ? location.href.substring(x+p.length+1,y) : location.href.substring(x+p.length+1);
+	 var y=location.href.indexOf('&', x+1);
+	 return y >= 0 ? location.href.substring(x+p.length+1,y) : location.href.substring(x+p.length+1);
       } else if (d) {
-         return d;
+	 return d;
       } else {
-         return "";
+	 return "";
       }
     
    }
@@ -200,4 +204,4 @@ window.onload=function(){
    update_form();
 
 };
-</script>
+

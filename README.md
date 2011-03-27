@@ -21,9 +21,8 @@ The next template can reference the previously generated output using the ${outp
 
 The default next template: is ${output}${secret}${salt}.
 
-The generated bookmark links can be saved in a browser to reduce the amount of typing you need to do the next time you need to
-generate (or re-generate) the password. Note that the generated bookmarks do include the salt but do not include any value derived from your
-secret, including the output.
+The page can be bookmarked to reduce the amount of typing you need to do the next time you need to generate (or re-generate) the password. 
+Note that the generated bookmarks do include the salt but do not include any value derived from your secret, including the output.
 
 USAGE SCENARIOS
 ===============
@@ -100,7 +99,7 @@ Such a page:
 * never attempts to read or modify a user's cookies
 * never attempts to misrepresent the target of dynamically generated links
 
-You should be aware that any use of the generated bookmark link may expose any value you put into the initial template, next template, user, host or salt fields to third parties. Also, if you choose to bookmark such a link then those values will be stored in your browser's bookmark store.
+You should be aware that any use of a bookmark created from the passwords.html page may expose any value you put into the initial template, next template, user, host or salt fields to third parties.
 
 FILES
 =====

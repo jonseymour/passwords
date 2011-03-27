@@ -1,4 +1,3 @@
-<script type="text/javascript">
 /*
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
  * Digest Algorithm, as defined in RFC 1321.
@@ -77,7 +76,7 @@ function rstr2hex(input)
   {
     x = input.charCodeAt(i);
     output += hex_tab.charAt((x >>> 4) & 0x0F)
-           +  hex_tab.charAt( x        & 0x0F);
+	   +  hex_tab.charAt( x        & 0x0F);
   }
   return output;
 }
@@ -94,8 +93,8 @@ function rstr2b64(input)
   for(var i = 0; i < len; i += 3)
   {
     var triplet = (input.charCodeAt(i) << 16)
-                | (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
-                | (i + 2 < len ? input.charCodeAt(i+2)      : 0);
+		| (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
+		| (i + 2 < len ? input.charCodeAt(i+2)      : 0);
     for(var j = 0; j < 4; j++)
     {
       if(i * 8 + j * 6 > input.length * 8) output += b64pad;
@@ -127,7 +126,7 @@ function rstr2any(input, encoding)
    * use.
    */
   var full_length = Math.ceil(input.length * 8 /
-                                    (Math.log(encoding.length) / Math.log(2)));
+				    (Math.log(encoding.length) / Math.log(2)));
   var remainders = Array(full_length);
   for(j = 0; j < full_length; j++)
   {
@@ -139,7 +138,7 @@ function rstr2any(input, encoding)
       q = Math.floor(x / divisor);
       x -= q * divisor;
       if(quotient.length > 0 || q > 0)
-        quotient[quotient.length] = q;
+	quotient[quotient.length] = q;
     }
     remainders[j] = x;
     dividend = quotient;
@@ -179,16 +178,16 @@ function str2rstr_utf8(input)
       output += String.fromCharCode(x);
     else if(x <= 0x7FF)
       output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
-                                    0x80 | ( x         & 0x3F));
+				    0x80 | ( x         & 0x3F));
     else if(x <= 0xFFFF)
       output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
-                                    0x80 | ((x >>> 6 ) & 0x3F),
-                                    0x80 | ( x         & 0x3F));
+				    0x80 | ((x >>> 6 ) & 0x3F),
+				    0x80 | ( x         & 0x3F));
     else if(x <= 0x1FFFFF)
       output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
-                                    0x80 | ((x >>> 12) & 0x3F),
-                                    0x80 | ((x >>> 6 ) & 0x3F),
-                                    0x80 | ( x         & 0x3F));
+				    0x80 | ((x >>> 12) & 0x3F),
+				    0x80 | ((x >>> 6 ) & 0x3F),
+				    0x80 | ( x         & 0x3F));
   }
   return output;
 }
@@ -201,7 +200,7 @@ function str2rstr_utf16le(input)
   var output = "";
   for(var i = 0; i < input.length; i++)
     output += String.fromCharCode( input.charCodeAt(i)        & 0xFF,
-                                  (input.charCodeAt(i) >>> 8) & 0xFF);
+				  (input.charCodeAt(i) >>> 8) & 0xFF);
   return output;
 }
 
@@ -210,7 +209,7 @@ function str2rstr_utf16be(input)
   var output = "";
   for(var i = 0; i < input.length; i++)
     output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
-                                   input.charCodeAt(i)        & 0xFF);
+				   input.charCodeAt(i)        & 0xFF);
   return output;
 }
 
@@ -379,5 +378,4 @@ function bit_rol(num, cnt)
   return (num << cnt) | (num >>> (32 - cnt));
 }
 
-</script>
 

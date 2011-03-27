@@ -14,11 +14,15 @@ generate()
 <html>
   <head>
     <title id='title'>password generator</title>
-    $(cat md5.html)
-    $(cat controller.html)
+    <script type="text/javascript">
+    $(cat md5.js)
+    $(cat controller.js)
+    window.onload=controller;
+    </script>
   </head>
   <body>
     $(cat form.html)
+    <hr/>
     $(markdown README.md)
   </body>
 </html>
