@@ -48,9 +48,7 @@ release()
 {
     generate
     git checkout versions.txt || die "unable to checkout versions.txt - check that you are on the release branch"
-    ls passwords-*.html 2>/dev/null | xargs -n1 rm || die "remove previously signed copies"
     sign
-    rm passwords.html
 }
 
 clean()
