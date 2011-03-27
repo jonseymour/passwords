@@ -47,9 +47,15 @@ sign()
 release()
 {
     generate
-    git checkout versions.txt || die "unable to checkout versions.txt"
+    git checkout versions.txt || die "unable to checkout versions.txt - check that you are on the release branch"
     ls passwords-*.html 2>/dev/null | xargs -n1 rm || die "remove previously signed copies"
     sign
+    rm passwords.html
+}
+
+clean()
+{
+    rm passwords.html
 }
 
 test "$(type -t $1)" == "function" || die "usage: build.sh sign | generate"
