@@ -137,7 +137,16 @@ MD5 implementation Copyright (C) Paul Johnston, et al. 1999 - 2009
 
 REVISIONS
 =========
-d1a9419 - Refactored in terms of a lightweight MVC framework (see https://github.com/jonseymour/mvc).
+<dl>
+<dt>1.0.2</dt>
+<dd>Restored bookmark functionality</dd>
+<dt>1.0.1</dt>
+<dd>Refactored in terms of a lightweight MVC framework (see https://github.com/jonseymour/mvc).
+</dd>
+<dt>1.0</dt>
+<dd>Initial release</dd>
+</dl>
+</dd>
 
 ACKNOWLEDGEMENTS
 ================
