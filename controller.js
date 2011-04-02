@@ -18,7 +18,8 @@ loader = function() {
 	    "message": {},
 	    "count": {},
 	    "title": {},
-	    "confirmed": {}
+	    "confirmed": {},
+	    "bookmark": {}
 	},
 	model:
 	{
@@ -126,17 +127,15 @@ loader = function() {
 		this.search('');
 		this.maxseekcount(1024);
 		this.count(0);
-	    }
-	},
-	bindings:
-	{
-	    "maxseekcount": Binding.INT_VALUE(),
-	    "location": Binding.QUERY(),
-	    "title": Binding.READONLY(
-	    {
-	      model: [ "user", "host" ],  // the accessor produces a map of model accessor results
-	      modelAdapter: function(map) {
-		var tmp="password generator";
+	    },
+	    "title": function() {
+		var 
+		tmp="password generator",
+		map={
+		    user: this.user(),
+		    host: this.host()
+		};
+		
 		if (map.user != '') {
 		  tmp = tmp + " for " + map.user;
 		  if (map.host != '') {
@@ -150,8 +149,23 @@ loader = function() {
 		  tmp = tmp + map.host;
 		}
 		return tmp;
-	      }
-	    }),
+	    }
+	},
+	bindings:
+	{
+	    "maxseekcount": Binding.INT_VALUE(),
+	    "location": Binding.QUERY(),
+	    "bookmark": [ 
+		Binding.ATTRIBUTE(
+		{
+		    attribute: "href",
+		    model: "location",
+		    modelAdapter: function(arg) {
+			return location.href.split('?')[0]+'?'+Binding.QUERY.ENCODER(arg);
+		    }
+		}),
+		Binding.INNER_HTML({model: "title"})
+	    ],
 	    "output": [
 		Binding.VALUE(),
 		Binding.INPUT_TYPE(
@@ -163,7 +177,13 @@ loader = function() {
 			    false: "password"
 			}
 		    })
-	    ]
+	    ],
+	    "go": Binding.ACTION(
+		{ 
+		    onclick: function() { 
+			this.controller.bindings.location.update(true); 
+		    }
+		})
 	}
     };
 
