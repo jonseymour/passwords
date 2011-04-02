@@ -1,0 +1,3 @@
+[submodule "mvc"]
+	path = mvc
+	url = ../mvc

@@ -14,10 +14,18 @@ generate()
 <html>
   <head>
     <title id='title'>password generator</title>
+    <style>
+    $(cat style.css)
+    </style>
     <script type="text/javascript">
     $(cat md5.js)
+    $(cat mvc/accessor.js)
+    $(cat mvc/model.js)
+    $(cat mvc/view.js)
+    $(cat mvc/binding.js)
+    $(cat mvc/controller.js)
     $(cat controller.js)
-    window.onload=controller;
+    window.onload=loader;
     </script>
   </head>
   <body>

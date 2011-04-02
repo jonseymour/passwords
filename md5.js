@@ -1,3 +1,4 @@
+var md5=(function() {
 /*
  * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
  * Digest Algorithm, as defined in RFC 1321.
@@ -378,4 +379,8 @@ function bit_rol(num, cnt)
   return (num << cnt) | (num >>> (32 - cnt));
 }
 
+return {
+  hex_md5: hex_md5
+};
 
+ })();
