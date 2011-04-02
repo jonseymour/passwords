@@ -1,207 +1,176 @@
-function controller(){
+loader = function() {
+    var
+    timer,
+    params = {
+      "host": '',
+      "user": '',
+      "initial_template": '',
+      "next_template": ''
+    },
+    config = {
+	init: function() {
+	  this.bindings.location.read();
+	  Controller.prototype.update.apply(this);
+        },
+	view:
+	{
+	    "form": { type: 'form', id: 'generator' },
+	    "message": {},
+	    "count": {},
+	    "title": {},
+	    "confirmed": {}
+	},
+	model:
+	{
+	    'maxseekcount': 1024,
+	    'count': 0,
+	    'search': '',
+	    'output': '',
+	    'message': '',
+	    'host': '',
+	    'user': '',
+	    'initial_template': '${user}:${secret}@${host}${salt}',
+	    'next_template': '${output}${secret}${salt}',
+	    'salt': '',
+	    'secret': '',
+	    "confirm": '',
+	    'show': false,
+	    'auto': true,
+	    'advanced': false,
+	    'location': params,
+	    'seek': function() {
+		if (this.count() >= this.maxseekcount()) {
+		    this.message("to go further, adjust max count");
+		} else {
+		    while (this.count() < this.maxseekcount() && (this.output() != this.search() || this.search() == '') ) {
+			this.cycle();
+		    }
+		}
+	    },
+	    "next": function() {
+		this.cycle();
+	    },
+	    "cycle": function() {
+		var template =
+		    (this.output()=='')
+		    ? this.initial_template()
+		    : this.next_template();
+		var tmp;
 
-   var form = document.forms["generator"];
-   var messagePanel = document.getElementById("messages");
-   var countPanel = document.getElementById("count");
-   var confirmedPanel = document.getElementById("confirmed");
-   var title = document.getElementById("title");
-   var collapseAdvanced = document.getElementById("collapse-advanced");
-   var expandAdvanced = document.getElementById("expand-advanced");
-   var advanced=document.getElementById("advanced");
-   var message="";
-   var output="";
-   var maxseekcount=1024;
-   var count=0;
-   var search;
-   var timer;
+		if (this.output()!='') {
+		    tmp=this.next_template().replace('\${secret}', this.secret());
+		    tmp=tmp.replace('\${output}', this.output());
+		} else {
+		    tmp=this.initial_template().replace('\${secret}', this.secret());
+		}
 
-   function read_form()
-   {
-	message='';
-	output=form.output.value;
-	maxseekcount=parseInt(form.maxseekcount.value);
-	search=form['search'].value;
-   }
+		tmp=tmp.replace('\${user}', this.user());
+		tmp=tmp.replace('\${salt}', this.salt());
+		tmp=tmp.replace('\${host}', this.host());
 
-   function clear_sensitive()
-   {
-       try {
-	    var orig=form.secret.value+form.secret_confirm.value+form.output.value+form.search.value;
-	    output='';
-	    form.secret.value='';
-	    form.secret_confirm.value='';
-	    form.output.value='';
-	    form.search.value='';
-	    if (orig != '') {
-		message = 'sensitive values cleared by timeout';
+		this.output(md5.hex_md5(tmp+'\n').substring(0,8));
+		this.count(this.count()+1);
+	    },
+	    "prev": function() {
+		var limit=this.count() > 0 ? this.count()-1 : 0;
+		this.count(0);
+		this.output('');
+		while (this.count() < limit) {
+		    this.cycle();
+		}
+	    },
+	    "clear_sensisitve": function() {
+		var orig=this.secret()+this.confirm()+this.output()+this.search();
+		this.output('');
+		this.secret('');
+		this.confirm('');
+		this.search('');
+		if (orig != '') {
+		    this.message('sensitive values cleared by timeout');
+		}
+	    },
+	    "confirmed": function() {
+		if (arguments.length > 0) {
+		    return '';
+		}
+		if (this.secret() == this.confirm()) {
+		    return this.secret() == '' ? '' : 'ok';
+		} else {
+		    return 'not confirmed';
+		}
+	    },
+	    "location": function(map) {
+		var p;
+		if (arguments.length == 0) {
+		  var result = {};
+		  for (p in params) {
+		    result[p] = this[p]();
+		  }
+		  return result;
+		} else {
+		  for (p in params) {
+		    if (map[p]) {
+		      this[p](map[p]);
+		    }
+		  }
+		  return undefined;
+		}
+	    },
+	    "clear": function() {
+		this.secret('');
+		this.confirm('');
+	    },
+	    "reset": function() {
+		this.output('');
+		this.message('');
+		this.search('');
+		this.maxseekcount(1024);
+		this.count(0);
 	    }
-	} catch (e) {
-	    message = 'timeout failed to clear sensitive values';
+	},
+	bindings:
+	{
+	    "maxseekcount": Binding.INT_VALUE(),
+	    "location": Binding.QUERY(),
+	    "title": Binding.READONLY(
+	    {
+	      model: [ "user", "host" ],  // the accessor produces a map of model accessor results
+	      modelAdapter: function(map) {
+		var tmp="password generator";
+		if (map.user != '') {
+		  tmp = tmp + " for " + map.user;
+		  if (map.host != '') {
+		    tmp = tmp + "@";
+		  }
+		}
+		if (map.host != '') {
+		  if (map.user == '') {
+		    tmp = tmp + ' ';
+		  }
+		  tmp = tmp + map.host;
+		}
+		return tmp;
+	      }
+	    }),
+	    "output": [
+		Binding.VALUE(),
+		Binding.INPUT_TYPE(
+		    {
+			"model": "show",
+			"modelAdapter":
+			{
+			    true: "text",
+			    false: "password"
+			}
+		    })
+	    ]
 	}
-	update_form();
-   }
+    };
 
-   function update_form()
-   {
-      if (form.show.checked) {
-	 form.output.type="text";
-      } else {
-	 form.output.type="password";
-      }
-      if (form.secret.value == form.secret_confirm.value) {
-	  confirmedPanel.innerHTML=form.secret.value == '' ? '' : 'ok';
-      } else {
-	 confirmedPanel.innerHTML='not confirmed'
-      }
-      form.maxseekcount.value=maxseekcount;
-      form.output.value=output;
-      countPanel.innerHTML=count;
-      messagePanel.innerHTML=message;
-      location.replace(bookmark_url());
-      title.innerHTML=bookmark_title();
-      if (timer) {
-	  window.clearTimeout(timer);
-      }
-      if (form.auto.checked) {
-	  timer = window.setTimeout(clear_sensitive, 60000);
-      }
-   }
-
-   function bookmark_url()
-   {
-      var x=location.href.indexOf('?');
-      var uri=x >= 0 ? location.href.substring(0,x) : location.href;
-      if (uri.lastIndexOf('#') != uri.length-1) {
-	  uri=uri + '#';
-      }
-      return uri  
-	  +"?"
-	  +"&user="+form.user.value
-	  +"&host="+form.host.value
-	  +"&salt="+form.salt.value
-	  +"&initial_template="+form.initial_template.value
-	  +"&next_template="+form.next_template.value;
-   }
-
-   function bookmark_title()
-   {
-      var tmp="password generator"
-      if (form.user.value != '') {
-	  tmp = tmp + " for " + form.user.value
-	  if (form.host.value != '') {
-	      tmp = tmp + "@"
-	  }
-      }
-      if (form.host.value != '') {
-	  if (form.user.value == '') {
-	     tmp = tmp + ' ';
-	  }
-	  tmp = tmp + form.host.value
-      }
-      return tmp;
-   }
-
-   function cycle()
-   {
-      var template = 
-	(output=='')
-	? form.initial_template.value
-	: form.next_template.value;
-      var tmp;
-
-      if (output!='') {
-	 tmp=form.next_template.value.replace('\${secret}', form.secret.value);
-	 tmp=tmp.replace('\${output}', output);
-      } else {
-	 tmp=form.initial_template.value.replace('\${secret}', form.secret.value);
-      }
-
-      tmp=tmp.replace('\${user}', form.user.value);
-      tmp=tmp.replace('\${salt}', form.salt.value);
-      tmp=tmp.replace('\${host}', form.host.value);
-
-      output=hex_md5(tmp+'\n').substring(0,8);
-      count=count+1;
-   }
-
-   form.next.onclick=function() {
-      read_form();
-      cycle();
-      update_form();
-      return false;
-   };
-
-
-   form.prev.onclick=function() {
-      read_form();
-      maxseekcount=count > 0 ? count-1 : 0;
-      count=0;
-      output='';
-      while (count < maxseekcount) {
-	 cycle();
-      }
-      update_form();
-      return false;
-   };
-
-   form.seek.onclick=function() {
-      read_form();
-      if (count >= maxseekcount) {
-	 message="to go further, adjust max count";
-      } else {
-	 while (count < maxseekcount && (output != search || search == '') ) {
-	    cycle();
-	 }
-      }
-      update_form();
-   }
-
-   form.reset.onclick=function() {
-      count=0;
-      maxseekcount=1024;
-      output='';
-      message='';
-      update_form();
-      return false;
-   };
-
-   form.clear.onclick=function() {
-      form.secret.value='';
-      form.secret_confirm.value='';
-      read_form();
-      update_form();
-      return false;
-   };
-
-   form.search.onblur=update_form;			
-   form.show.onchange=update_form;
-   form.user.onblur=update_form;
-   form.host.onblur=update_form;
-   form.salt.onblur=update_form;
-   form.secret.onblur=update_form;
-   form.secret_confirm.onblur=update_form;
-
-   function read_param(p,d)
-   {
-      var x=location.href.indexOf(p+"=");
-      if (x>=0) {
-	 var y=location.href.indexOf('&', x+1);
-	 return y >= 0 ? location.href.substring(x+p.length+1,y) : location.href.substring(x+p.length+1);
-      } else if (d) {
-	 return d;
-      } else {
-	 return "";
-      }
-    
-   }
-
-   form.host.value=read_param('host');
-   form.user.value=read_param('user');
-   form.salt.value=read_param('salt');
-   form.initial_template.value=read_param('initial_template', "${user}:${secret}@${host}${salt}");
-   form.next_template.value=read_param('next_template', "${output}${secret}${salt}");
-
-   update_form();
-
+    try {
+	new Controller(config);
+    } catch (x) {
+	window.alert(x.lineNo + ": "+ x);
+    }
+    return false;
 };
-

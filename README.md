@@ -135,6 +135,10 @@ AUTHOR
 Copyright (C) Jon Seymour 2011<br/>
 MD5 implementation Copyright (C) Paul Johnston, et al. 1999 - 2009
 
+REVISIONS
+=========
+d1a9419 - Refactored in terms of a lightweight MVC framework (see https://github.com/jonseymour/mvc).
+
 ACKNOWLEDGEMENTS
 ================
 passwords.html makes use of Paul Johnson's JavaScript MD5 implementation - see http://pajhome.org.uk/crypt/md5 for more info
