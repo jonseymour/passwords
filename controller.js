@@ -9,8 +9,8 @@ loader = function() {
     },
     config = {
 	init: function() {
-	  this.bindings.location.read();
-	  Controller.prototype.update.apply(this);
+	  this.bindings.location.read(true);
+	  this.update();
         },
 	view:
 	{
