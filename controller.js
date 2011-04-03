@@ -1,6 +1,6 @@
-loader = function() {
+loader = 
+(function() {
     var
-    controller,
     timer,
     params = {
       "host": '',
@@ -184,12 +184,10 @@ loader = function() {
 	}
     };
 
-    try {
-	controller = new Controller(config);
-	controller.bindings.location.read(true);
-	controller.update();
-    } catch (x) {
-	window.alert(x.lineNo + ": "+ x);
-    }
-    return false;
-};
+    return new Controller(config)
+	 .loader(
+	     function() {
+		 this.bindings.location.read(true); 
+		 return true;
+	     });
+})();
