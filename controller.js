@@ -1,4 +1,4 @@
-loader = 
+loader =
 (function() {
     var
     timer,
@@ -126,13 +126,13 @@ loader =
 		this.count(0);
 	    },
 	    "title": function() {
-		var 
+		var
 		tmp="password generator",
 		map={
 		    user: this.user(),
 		    host: this.host()
 		};
-		
+
 		if (map.user != '') {
 		  tmp = tmp + " for " + map.user;
 		  if (map.host != '') {
@@ -150,9 +150,9 @@ loader =
 	},
 	bindings:
 	{
-	    "maxseekcount": Binding.INT_VALUE(),
+	    "maxseekcount": Binding.INTEGER(),
 	    "location": Binding.QUERY(),
-	    "bookmark": [ 
+	    "bookmark": [
 		Binding.ATTRIBUTE(
 		{
 		    attribute: "href",
@@ -164,7 +164,7 @@ loader =
 		Binding.INNER_HTML({model: "title"})
 	    ],
 	    "output": [
-		Binding.VALUE(),
+		Binding.INPUT_VALUE(),
 		Binding.INPUT_TYPE(
 		    {
 			"model": "show",
@@ -176,9 +176,9 @@ loader =
 		    })
 	    ],
 	    "go": Binding.ACTION(
-		{ 
-		    onclick: function() { 
-			this.controller.bindings.location.update(true); 
+		{
+		    onclick: function() {
+			this.controller.bindings.location.update(true);
 		    }
 		})
 	}
@@ -187,7 +187,7 @@ loader =
     return new Controller(config)
 	 .loader(
 	     function() {
-		 this.bindings.location.read(true); 
+		 this.bindings.location.read(true);
 		 return true;
 	     });
 })();
