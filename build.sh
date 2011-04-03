@@ -24,6 +24,7 @@ generate()
     $(cat mvc/view.js)
     $(cat mvc/binding.js)
     $(cat mvc/controller.js)
+    $(cat mvc/mvc.js)
     $(cat controller.js)
     window.onload=loader;
     </script>

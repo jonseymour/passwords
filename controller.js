@@ -184,7 +184,7 @@ loader =
 	}
     };
 
-    return new Controller(config)
+    return new mvc.Controller(config)
 	 .loader(
 	     function() {
 		 this.bindings.location.read(true);
