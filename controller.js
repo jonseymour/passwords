@@ -1,5 +1,6 @@
 loader = function() {
     var
+    controller,
     timer,
     params = {
       "host": '',
@@ -8,10 +9,6 @@ loader = function() {
       "next_template": ''
     },
     config = {
-	init: function() {
-	  this.bindings.location.read(true);
-	  this.update();
-        },
 	view:
 	{
 	    "form": { type: 'form', id: 'generator' },
@@ -188,7 +185,9 @@ loader = function() {
     };
 
     try {
-	new Controller(config);
+	controller = new Controller(config);
+	controller.bindings.location.read(true);
+	controller.update();
     } catch (x) {
 	window.alert(x.lineNo + ": "+ x);
     }
