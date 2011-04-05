@@ -1,74 +1,84 @@
-<form name="generator" onsubmit="javascript: return false;">
-<div id="basic">
-<dl>
-<dt>messages</dt>
-<dd>
-<pre id="message"></pre>
-</dd>
-<dt>bookmark</dt>
-<dd>
-<input name="go" value="go" type="button">
-<a href="#" id="bookmark"></a>
-</dd>
-<dt>user</dt>
-<dd>
-<input name="user" type="text">
-</dd>
-<dt>host</dt>
-<dd>
-<input name="host" type="text">
-</dd>
-<dt>secret</dt>
-<dd>
-<input name="secret" type="password">
-<input name="clear" value="clear" type="button">
-<dt>confirm</dt>
-<dd>
-<input name="confirm" type="password">
-<span id="confirmed">confirmed</span>
-</dd>
-<dt>output</dt>
-<dd>
-<input name="output" type="password">
-<input name="show" value="true" type="checkbox">show
-<input name="next" value="next" type="button">
-&nbsp;
-<input name="prev" value="prev" type="button">
-<input name="reset" value="reset" type="button">
-</dd>
-</dl>
-</div>
-<div id="advanced">
-<dl>
-<dt>initial template</dt>
-<dd>
-<input name="initial_template" size="64" type="text">
-</dd>
-<dt>next template</dt>
-<dd>
-<input name="next_template" type="text">
-</dd>
-<dt>search key</dt>
-<dd>
-<input name="search" type="password">
-<input name="seek" value="seek" type="button">
-</dd>
-<dt>max seek count</dt>
-<dd>
-<input name="maxseekcount" value="1" type="text">
-</dd>
-<dt>count</dt>
-<dd>
-<pre id="count">0</pre>
-</dd>
-<dt>salt</dt>
-<dd>
-<input name="salt" type="text">
-</dd>
-<dt>auto reset and clear</dt>
-<dd>
-<input name="auto" type="checkbox" checked="checked">enabled
-</dd>
-</dl>
-</div>
+<form name="generator" onsubmit="javascript: return false;" id="generator">
+  <div id="basic">
+    <dl>
+      <dt>messages</dt>
+      <dd>
+        <span id="message"></span>
+      </dd>
+
+      <dt>user</dt>
+      <dd>
+        <input name="user" type="text" />
+      </dd>
+
+      <dt>host</dt>
+      <dd>
+        <input name="host" type="text" />
+      </dd>
+
+      <dt>secret</dt>
+      <dd>
+        <input name="secret" type="password" />
+        <input name="clear" value="clear" type="button" />
+      </dd>
+
+      <dt>confirm</dt>
+      <dd>
+        <input name="confirm" type="password" />
+        <span id="confirmed">confirmed</span>
+      </dd>
+
+      <dt>output</dt>
+      <dd>
+        <input name="output" type="password" />
+        <input name="show" value="true" type="checkbox" />show
+        <input name="next" value="next" type="button" /> &nbsp;
+        <input name="prev" value="prev" type="button" />
+        <input name="reset" value="reset" type="button" /></dd>
+    </dl>
+  </div>
+
+  <div id="advanced">
+    <dl>
+      <dt>bookmark</dt>
+      <dd>
+        <input name="go" value="go" type="button" />
+        <a href="#" id="bookmark" name="bookmark"></a>
+      </dd>
+
+      <dt>initial template</dt>
+      <dd>
+        <input name="initial_template" size="64" type="text" />
+      </dd>
+
+      <dt>next template</dt>
+      <dd>
+        <input name="next_template" type="text" />
+      </dd>
+
+      <dt>search key</dt>
+      <dd>
+        <input name="search" type="password" />
+        <input name="seek" value="seek" type= "button" />
+      </dd>
+
+      <dt>max seek count</dt>
+      <dd><input name="maxseekcount" value="1" type="text" /></dd>
+
+      <dt>count</dt>
+      <dd>
+        <span id="count">0</span>
+      </dd>
+
+      <dt>salt</dt>
+      <dd>
+        <input name="salt" type="text" />
+      </dd>
+
+      <dt>auto reset and clear</dt>
+      <dd>
+        <input name="auto" type="checkbox" checked="checked" /><label for="auto">enabled</label>
+      </dd>
+    </dl>
+  </div>
 </form>

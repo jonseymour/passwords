@@ -19,11 +19,12 @@ generate()
     </style>
     <script type="text/javascript">
     $(cat md5.js)
+    $(cat mvc/binding.js)
     $(cat mvc/accessor.js)
     $(cat mvc/model.js)
     $(cat mvc/view.js)
-    $(cat mvc/binding.js)
     $(cat mvc/controller.js)
+    $(cat mvc/mvc.js)
     $(cat controller.js)
     window.onload=loader;
     </script>

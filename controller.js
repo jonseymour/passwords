@@ -1,4 +1,5 @@
-loader = function() {
+loader =
+(function() {
     var
     timer,
     params = {
@@ -8,10 +9,6 @@ loader = function() {
       "next_template": ''
     },
     config = {
-	init: function() {
-	  this.bindings.location.read();
-	  Controller.prototype.update.apply(this);
-        },
 	view:
 	{
 	    "form": { type: 'form', id: 'generator' },
@@ -129,13 +126,13 @@ loader = function() {
 		this.count(0);
 	    },
 	    "title": function() {
-		var 
+		var
 		tmp="password generator",
 		map={
 		    user: this.user(),
 		    host: this.host()
 		};
-		
+
 		if (map.user != '') {
 		  tmp = tmp + " for " + map.user;
 		  if (map.host != '') {
@@ -153,9 +150,9 @@ loader = function() {
 	},
 	bindings:
 	{
-	    "maxseekcount": Binding.INT_VALUE(),
+	    "maxseekcount": Binding.INTEGER(),
 	    "location": Binding.QUERY(),
-	    "bookmark": [ 
+	    "bookmark": [
 		Binding.ATTRIBUTE(
 		{
 		    attribute: "href",
@@ -167,7 +164,7 @@ loader = function() {
 		Binding.INNER_HTML({model: "title"})
 	    ],
 	    "output": [
-		Binding.VALUE(),
+		Binding.INPUT_VALUE(),
 		Binding.INPUT_TYPE(
 		    {
 			"model": "show",
@@ -179,18 +176,18 @@ loader = function() {
 		    })
 	    ],
 	    "go": Binding.ACTION(
-		{ 
-		    onclick: function() { 
-			this.controller.bindings.location.update(true); 
+		{
+		    onclick: function() {
+			this.controller.bindings.location.update(true);
 		    }
 		})
 	}
     };
 
-    try {
-	new Controller(config);
-    } catch (x) {
-	window.alert(x.lineNo + ": "+ x);
-    }
-    return false;
-};
+    return new mvc.Controller(config)
+	 .loader(
+	     function() {
+		 this.bindings.location.read(true);
+		 return true;
+	     });
+})();
