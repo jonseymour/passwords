@@ -170,8 +170,8 @@ loader =
 			"model": "show",
 			"modelAdapter":
 			{
-			    true: "text",
-			    false: "password"
+			    "true": "text",
+			    "false": "password"
 			}
 		    })
 	    ],

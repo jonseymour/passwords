@@ -138,6 +138,8 @@ MD5 implementation Copyright (C) Paul Johnston, et al. 1999 - 2009
 REVISIONS
 =========
 <dl>
+<dt>1.0.4</dt>
+<dd>Fix issues that prevented correct operation in Safari.</dd>
 <dt>1.0.3</dt>
 <dd>Refinements to reflect changes in MVC library.</dd>
 <dt>1.0.2</dt>
