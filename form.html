@@ -1,84 +1,62 @@
 <form name="generator" onsubmit="javascript: return false;" id="generator">
   <div id="basic">
-    <dl>
-      <dt>messages</dt>
-      <dd>
-        <span id="message"></span>
-      </dd>
-
-      <dt>user</dt>
-      <dd>
-        <input name="user" type="text" />
-      </dd>
-
-      <dt>host</dt>
-      <dd>
-        <input name="host" type="text" />
-      </dd>
-
-      <dt>secret</dt>
-      <dd>
-        <input name="secret" type="password" />
+    <ul>
+      <span id="message"></span>
+      <li><input name="user" type="text" placeholder="user" autocorrect="off" autocapitalize="off"/></li>
+      <li><input name="host" type="text" placeholder="host"  autocorrect="off" autocapitalize="off"/></li>
+      <li><input name="secret" type="password" placeholder="secret"  autocorrect="off" autocapitalize="off"/>
         <input name="clear" value="clear" type="button" />
-      </dd>
-
-      <dt>confirm</dt>
-      <dd>
-        <input name="confirm" type="password" />
-        <span id="confirmed">confirmed</span>
-      </dd>
-
-      <dt>output</dt>
-      <dd>
-        <input name="output" type="password" />
+      </li>
+      <li><input name="confirm" type="password" placeholder="confirm"  autocorrect="off" autocapitalize="off"/>
+	<span id="confirmed">confirmed</span>
+      </li>
+      <li>
+        <input name="output" type="password" placeholder="output"  autocorrect="off" autocapitalize="off"/>
         <input name="show" value="true" type="checkbox" />show
+      </li>
+      <li>
         <input name="next" value="next" type="button" /> &nbsp;
         <input name="prev" value="prev" type="button" />
-        <input name="reset" value="reset" type="button" /></dd>
-    </dl>
+        <input name="reset" value="reset" type="button" />
+      </li>
+      <li>
+        <input name="go" value="go" type="button" />
+        <a href="#" id="bookmark" name="bookmark"></a>
+      </li>
+    </ul>
   </div>
 
   <div id="advanced">
-    <dl>
-      <dt>bookmark</dt>
-      <dd>
-        <input name="go" value="go" type="button" />
-        <a href="#" id="bookmark" name="bookmark"></a>
-      </dd>
+    <ul>
 
-      <dt>initial template</dt>
-      <dd>
-        <input name="initial_template" size="64" type="text" />
-      </dd>
+      <li>
+        <input name="initial_template" size="64" type="text" placeholder="initial_template"  autocorrect="off" autocapitalize="off"/>
+      </li>
 
-      <dt>next template</dt>
-      <dd>
-        <input name="next_template" type="text" />
-      </dd>
+      <li>
+        <input name="next_template" type="text" placeholder="next_template"  autocorrect="off" autocapitalize="off"/>
+      </li>
 
-      <dt>search key</dt>
-      <dd>
-        <input name="search" type="password" />
+      <li>
+        <input name="search" type="password" placeholder="search"  autocorrect="off" autocapitalize="off"/>
         <input name="seek" value="seek" type= "button" />
-      </dd>
+      </li>
 
-      <dt>max seek count</dt>
-      <dd><input name="maxseekcount" value="1" type="text" /></dd>
+      <li>
+	<input name="maxseekcount" value="1" type="text" placeholder="max seek count"  autocorrect="off" autocapitalize="off"/>
+      </li>
 
-      <dt>count</dt>
-      <dd>
-        <span id="count">0</span>
-      </dd>
+      <li>
+        <span id="count" placeholder="count">0</span>
+      </li>
 
-      <dt>salt</dt>
-      <dd>
-        <input name="salt" type="text" />
-      </dd>
+      <li>
+        <input name="salt" type="text" placeholder="salt"  autocorrect="off" autocapitalize="off"/>
+      </li>
 
-      <dt>auto reset and clear</dt>
-      <dd>
-        <input name="auto" type="checkbox" checked="checked" /><label for="auto">enabled</label>
-      </dd>
-    </dl>
+      <li>
+	<input name="auto" type="checkbox" checked="checked" /><label for="auto">enabled</label>
+      </li>
+    </ul>
   </div>
 </form>
