@@ -32,8 +32,10 @@ generate()
   </head>
   <body>
     $(cat form.html)
+    <div id="README">
     <hr/>
     $(markdown README.md)
+    </div>
   </body>
 </html>
 EOF
