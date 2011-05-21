@@ -11,7 +11,7 @@ generate()
     test -n "$(which markdown) 2>/dev/null" || die "please install markdown"
     if ! {
 	    cat > passwords.html <<EOF
-<html>
+<html id="html">
   <head>
     <title id='title'>password generator</title>
     <meta name="viewport" content="user-scalable=no,width=device-width"/>
