@@ -14,6 +14,7 @@ generate()
 <html>
   <head>
     <title id='title'>password generator</title>
+    <meta name="viewport" content="user-scalable=no,width=device-width"/>
     <style>
     $(cat style.css)
     </style>
