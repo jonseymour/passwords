@@ -1,3 +1,26 @@
 div.hidden {
     display: none;
 }
+
+body {
+     background-color: #ddd;
+     color: #222;
+     font-family: Helvetica;
+     font-size: 14px;
+     margin: 0;
+     padding: 0;
+}
+
+ul {
+   list-style: none;
+   margin: 10px;
+   padding: 0;
+}
+
+html.small div#advanced {
+       display: none;
+}
+
+html.small div#README {
+	   display: none;
+}
