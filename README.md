@@ -138,6 +138,13 @@ MD5 implementation Copyright (C) Paul Johnston, et al. 1999 - 2009
 REVISIONS
 =========
 <dl>
+<dt>1.0.5</dt>
+<dd>
+<ul>
+<li>fix generation of bookmark link</li>
+<li>tune HTML for iPhone form factor</li>
+</ul>
+</dd>
 <dt>1.0.4</dt>
 <dd>Fix issues that prevented correct operation in Safari.</dd>
 <dt>1.0.3</dt>
