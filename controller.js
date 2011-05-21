@@ -12,6 +12,7 @@ loader =
 	view:
 	{
 	    "form": { type: 'form', id: 'generator' },
+	    "html": {},
 	    "message": {},
 	    "count": {},
 	    "title": {},
@@ -165,6 +166,16 @@ loader =
 		}),
 		Binding.INNER_HTML({model: "title"})
 	    ],
+	    "html": Binding.CLASS(
+		{
+		    modelAdapter: function(arg) {
+			if (window.innerWidth && window.innerWidth <= 480) {
+			    return "small";
+			} else {
+			    return "";
+			}
+		    }
+		}),
 	    "output": [
 		Binding.INPUT_VALUE(),
 		Binding.INPUT_TYPE(
@@ -190,6 +201,7 @@ loader =
 	 .loader(
 	     function() {
 		 this.bindings.location.read(true);
+		 this.bindings.html.update(true);
 		 return true;
 	     });
 })();
