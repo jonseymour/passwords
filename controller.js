@@ -160,7 +160,7 @@ loader =
 		    attribute: "href",
 		    model: "location",
 		    modelAdapter: function(arg) {
-			return location.href.split('?')[0]+'?'+Binding.QUERY.ENCODER(arg);
+			return location.href.split('?')[0]+Binding.QUERY.ENCODER(arg);
 		    }
 		}),
 		Binding.INNER_HTML({model: "title"})
