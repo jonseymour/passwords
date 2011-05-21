@@ -134,7 +134,7 @@ loader =
 		};
 
 		if (map.user != '') {
-		  tmp = tmp + " for " + map.user;
+		  tmp = map.user;
 		  if (map.host != '') {
 		    tmp = tmp + "@";
 		  }
@@ -144,6 +144,8 @@ loader =
 		    tmp = tmp + ' ';
 		  }
 		  tmp = tmp + map.host;
+		} else {
+		  tmp = "password generator";
 		}
 		return tmp;
 	    }
