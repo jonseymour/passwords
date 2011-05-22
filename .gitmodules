@@ -1,3 +1,6 @@
 [submodule "mvc"]
 	path = mvc
 	url = ../mvc
+[submodule "sjcl"]
+	path = sjcl
+	url = git://github.com/bitwiseshiftleft/sjcl.git
