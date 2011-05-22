@@ -39,6 +39,8 @@ loader =
 	    'advanced': false,
 	    'location': params,
 	    "generator_state": "login",
+	    'sessionStorage': { },
+	    'localStorage': { },
 	    'seek': function() {
 		if (this.count() >= this.maxseekcount()) {
 		    this.message("to go further, adjust max count");
@@ -204,7 +206,9 @@ loader =
 	    "generator": Binding.CLASS(
 		{
 		    model: "generator_state"
-		})
+		}),
+	     "sessionStorage": Binding.SESSION_STORAGE(),
+	     "localStorage": Binding.LOCAL_STORAGE()
 	}
     };
 
@@ -212,6 +216,8 @@ loader =
 	 .loader(
 	     function() {
 		 this.bindings.location.read(true);
+		 this.bindings.localStorage.read(true);
+		 this.bindings.sessionStorage.read(true);
 		 this.bindings.html.update(true);
 		 return true;
 	     });
