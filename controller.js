@@ -16,7 +16,6 @@ loader =
 	    "message": {},
 	    "count": {},
 	    "title": {},
-	    "confirmed": {},
 	    "bookmark": {},
 	    "title_show": {},
 	    "output_show": {}
@@ -89,16 +88,6 @@ loader =
 		this.search('');
 		if (orig != '') {
 		    this.message('sensitive values cleared by timeout');
-		}
-	    },
-	    "confirmed": function() {
-		if (arguments.length > 0) {
-		    return '';
-		}
-		if (this.secret() == this.confirm()) {
-		    return this.secret() == '' ? '' : 'ok';
-		} else {
-		    return 'not confirmed';
 		}
 	    },
 	    "location": function(map) {
