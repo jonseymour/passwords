@@ -11,7 +11,7 @@ loader =
     config = {
 	view:
 	{
-	    "form": { type: 'form', id: 'generator' },
+	    "generator": { type: 'form' },
 	    "html": {},
 	    "message": {},
 	    "count": {},
