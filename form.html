@@ -1,33 +1,58 @@
-<form name="generator" onsubmit="javascript: return false;" id="generator">
-  <div id="basic">
-    <ul>
+<form name="generator" onsubmit="javascript: return false;" id="generator" class="login">
+  <ul id="login">
       <span id="message"></span>
+      <li>
+	<input id="secret" name="secret" type="password" placeholder="secret"  autocorrect="off" autocapitalize="off"/>
+      </li>
+      <li>
+	<input id="confirm" name="confirm" type="password" placeholder="confirm"  autocorrect="off" autocapitalize="off"/>
+      </li>
+      <li>
+        <input name="login" value="login" type="button" />
+        <input name="clear" value="reset" type="button" />
+      </li>
+  </ul>
+
+  <ul id="select">
+    <li>
+      <select name="system">
+      </select>
+    </li>
+    <li>
+        <input name="add" value="add" type="button" />
+        <input name="edit" value="edit" type="button" />
+        <input name="show" value="show" type="button" />
+	<input name="logout" value="logout" type="button" />
+    </li>
+  </ul>
+
+  <ul id="details">
       <li><input name="user" type="text" placeholder="user" autocorrect="off" autocapitalize="off"/></li>
       <li><input name="host" type="text" placeholder="host"  autocorrect="off" autocapitalize="off"/></li>
-      <li><input name="secret" type="password" placeholder="secret"  autocorrect="off" autocapitalize="off"/>
-        <input name="clear" value="clear" type="button" />
-      </li>
-      <li><input name="confirm" type="password" placeholder="confirm"  autocorrect="off" autocapitalize="off"/>
-	<span id="confirmed">confirmed</span>
+      <li>
+        <input name="output" type="password" placeholder="output"  autocorrect="off" autocapitalize="off"/> (<span id="count" placeholder="count">0</span>)
       </li>
       <li>
-        <input name="output" type="password" placeholder="output"  autocorrect="off" autocapitalize="off"/>
-        <input name="show" value="true" type="checkbox" />show
-      </li>
-      <li>
-        <input name="next" value="next" type="button" /> &nbsp;
+        <input name="next" value="next" type="button" />
         <input name="prev" value="prev" type="button" />
         <input name="reset" value="reset" type="button" />
       </li>
+  </ul>
+
+  <div id="show_output">
+    <dl>
+      <dt>system</dt>
+      <dd><span id="title_show"></span></dd>
+      <dt>password</dt>
+      <dd><span id="output_show"></span></dd>
+     </dl>
+  </div>
+
+  <ul id="advanced">
       <li>
         <input name="go" value="go" type="button" />
         <a href="#" id="bookmark" name="bookmark"></a>
       </li>
-    </ul>
-  </div>
-
-  <div id="advanced">
-    <ul>
 
       <li>
         <input name="initial_template" size="64" type="text" placeholder="initial_template"  autocorrect="off" autocapitalize="off"/>
@@ -47,16 +72,18 @@
       </li>
 
       <li>
-        <span id="count" placeholder="count">0</span>
-      </li>
-
-      <li>
         <input name="salt" type="text" placeholder="salt"  autocorrect="off" autocapitalize="off"/>
       </li>
 
       <li>
 	<input name="auto" type="checkbox" checked="checked" /><label for="auto">enabled</label>
       </li>
-    </ul>
-  </div>
+  </ul>
+
+  <ul id="logged_in">
+    <li>
+      <input name="cancel" value="cancel" type="button" />
+      <input name="done" value="done" type="button" />
+    </li>
+  </ul>
 </form>

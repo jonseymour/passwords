@@ -17,7 +17,9 @@ loader =
 	    "count": {},
 	    "title": {},
 	    "confirmed": {},
-	    "bookmark": {}
+	    "bookmark": {},
+	    "title_show": {},
+	    "output_show": {}
 	},
 	model:
 	{
@@ -33,10 +35,11 @@ loader =
 	    'salt': '',
 	    'secret': '',
 	    "confirm": '',
-	    'show': false,
+	    'show': true,
 	    'auto': true,
 	    'advanced': false,
 	    'location': params,
+	    "generator_state": "login",
 	    'seek': function() {
 		if (this.count() >= this.maxseekcount()) {
 		    this.message("to go further, adjust max count");
@@ -149,6 +152,31 @@ loader =
 		  tmp = "password generator";
 		}
 		return tmp;
+	    },
+            "login": function() {
+		this.generator_state("select");
+            },
+	    "edit": function() {
+		this.generator_state("details");
+	    },
+	    "add": function() {
+		this.host("");
+		this.user("");
+		this.generator_state("details");
+	    },
+	    "cancel": function() {
+		this.generator_state("select");
+	    },
+	    "done": function() {
+		this.generator_state("select");
+	    },
+	    "logout": function() {
+		this.secret("");
+		this.confirm("");
+		this.generator_state("login");
+	    },
+	    "show": function() {
+		this.generator_state("show");
 	    }
 	},
 	bindings:
@@ -176,23 +204,17 @@ loader =
 			}
 		    }
 		}),
-	    "output": [
-		Binding.INPUT_VALUE(),
-		Binding.INPUT_TYPE(
-		    {
-			"model": "show",
-			"modelAdapter":
-			{
-			    "true": "text",
-			    "false": "password"
-			}
-		    })
-	    ],
+	    "output_show": Binding.INNER_HTML({model: "output"}),
+	    "title_show": Binding.INNER_HTML({model: "title"}),
 	    "go": Binding.ACTION(
 		{
 		    onclick: function() {
 			this.controller.bindings.location.update(true);
 		    }
+		}),
+	    "generator": Binding.CLASS(
+		{
+		    model: "generator_state"
 		})
 	}
     };
