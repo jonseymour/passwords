@@ -17,8 +17,7 @@ loader =
 	    "count": {},
 	    "title": {},
 	    "bookmark": {},
-	    "title_show": {},
-	    "output_show": {}
+	    "title_show": {}
 	},
 	model:
 	{
@@ -195,7 +194,7 @@ loader =
 			}
 		    }
 		}),
-	    "output_show": Binding.INNER_HTML({model: "output"}),
+	    "output_show": Binding.INPUT_VALUE({model: "output"}),
 	    "title_show": Binding.INNER_HTML({model: "title"}),
 	    "go": Binding.ACTION(
 		{
