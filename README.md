@@ -157,7 +157,6 @@ REVISIONS
 <dt>1.0</dt>
 <dd>Initial release</dd>
 </dl>
-</dd>
 
 ACKNOWLEDGEMENTS
 ================
