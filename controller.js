@@ -146,13 +146,15 @@ loader =
             "login": function() {
 		this.generator_state("select");
             },
-	    "edit": function() {
-		this.generator_state("details");
-	    },
-	    "add": function() {
-		this.host("");
-		this.user("");
-		this.generator_state("details");
+	    "open": function() {
+		if (this.credentials) {
+		    this.generator_state("show");
+		} else {
+		    this.host("");
+		    this.user("");
+		    this.generator_state("details");
+		}
+
 	    },
 	    "cancel": function() {
 		this.generator_state("select");
