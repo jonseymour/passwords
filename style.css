@@ -17,11 +17,60 @@ ul {
     padding: 0;
 }
 
+ul li {
+    margin: 0;
+    padding: 0;
+}
+
+ul li input {
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    display: block;
+    font-size: 17px;
+    margin: 0;
+    margin-bottom: -1px;
+    padding: 12px 10px;
+    text-decoration: none;
+   -webkit-border-top-left-radius: 0px;
+   -webkit-border-top-right-radius: 0px;
+   -webkit-border-bottom-left-radius: 0px;
+   -webkit-border-bottom-right-radius: 0px;
+}
+
+ul li select {
+    background-color: #FFFFFF;
+    border: 1px solid #999999;
+    display: block;
+    font-size: 17px;
+    margin: 0;
+    margin-bottom: -1px;
+    padding: 12px 10px;
+    text-decoration: none;
+   -webkit-border-top-left-radius: 0px;
+   -webkit-border-top-right-radius: 0px;
+   -webkit-border-bottom-left-radius: 0px;
+   -webkit-border-bottom-right-radius: 0px;
+}
+
+ul li:first-child input {
+   -webkit-border-top-left-radius: 8px;
+   -webkit-border-top-right-radius: 8px;
+}
+
+ul li:last-child input {
+   -webkit-border-bottom-left-radius: 8px;
+   -webkit-border-bottom-right-radius: 8px;
+}
+
 html.small div#README {
     display: none;
 }
 
 html.small input {
+    width: 100%;
+}
+
+html.small select {
     width: 100%;
 }
 
@@ -33,27 +82,27 @@ form div {
     display: none;
 }
 
-form.login #login {
+form.login .login {
     display: block;
 }
 
-form.select #select {
+form.select .select {
     display: block;
 }
 
-form.details #details {
+form.details .details {
     display: block;
 }
 
-form.show #show_output {
+form.show .show_output {
     display: block;
 }
 
-form.show #logged_in {
+form.show .logged_in {
     display: block;
 }
 
-form.details #logged_in {
+form.details .logged_in {
     display: block;
 }
 

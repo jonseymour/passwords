@@ -1,19 +1,21 @@
 <form name="generator" onsubmit="javascript: return false;" id="generator" class="login">
-  <ul id="login">
-      <span id="message"></span>
+  <span id="message"></span>
+  <ul class="login">
       <li>
 	<input id="secret" name="secret" type="password" placeholder="secret"  autocorrect="off" autocapitalize="off"/>
       </li>
       <li>
 	<input id="confirm" name="confirm" type="password" placeholder="confirm"  autocorrect="off" autocapitalize="off"/>
       </li>
+  </ul>
+  <ul class="login">
       <li>
         <input name="login" value="login" type="button" />
         <input name="clear" value="reset" type="button" />
       </li>
   </ul>
 
-  <ul id="select">
+  <ul class="select">
     <li>
       <select name="credential">
 	<option>-- add a credential --</option>
@@ -25,12 +27,14 @@
     </li>
   </ul>
 
-  <ul id="details">
+  <ul class="details">
       <li><input name="user" type="text" placeholder="user" autocorrect="off" autocapitalize="off"/></li>
       <li><input name="host" type="text" placeholder="host"  autocorrect="off" autocapitalize="off"/></li>
       <li>
         <input name="output" type="text" placeholder="output"/> (<span id="count" placeholder="count">0</span>)
       </li>
+  </ul>
+  <ul class="details">
       <li>
         <input name="next" value="next" type="button" />
         <input name="prev" value="prev" type="button" />
@@ -38,7 +42,7 @@
       </li>
   </ul>
 
-  <div id="show_output">
+  <div class="show_output">
     <dl>
       <dt>system</dt>
       <dd><span id="title_show"></span></dd>
@@ -47,7 +51,7 @@
      </dl>
   </div>
 
-  <ul id="advanced">
+  <ul class="advanced">
       <li>
         <input name="go" value="go" type="button" />
         <a href="#" id="bookmark" name="bookmark"></a>
@@ -79,7 +83,7 @@
       </li>
   </ul>
 
-  <ul id="logged_in">
+  <ul class="logged_in">
     <li>
       <input id="cancel" name="cancel" value="cancel" type="button" />
       <input name="done" value="done" type="button" />
