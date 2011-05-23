@@ -14,7 +14,6 @@ loader =
 	    "generator": { type: 'form' },
 	    "html": {},
 	    "message": {},
-	    "count": {},
 	    "title": {},
 	    "bookmark": {},
 	    "title_show": {}
