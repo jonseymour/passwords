@@ -147,7 +147,7 @@ loader =
 		this.generator_state("select");
             },
 	    "open": function() {
-		if (this.credentials) {
+		if (this.credentials()) {
 		    this.generator_state("show");
 		} else {
 		    this.host("");
@@ -169,6 +169,8 @@ loader =
 	    },
 	    "show": function() {
 		this.generator_state("show");
+	    },
+	    "credentials": function() {
 	    }
 	},
 	bindings:
