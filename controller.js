@@ -8,6 +8,8 @@ loader =
       "initial_template": '',
       "next_template": ''
     },
+    credentials = {
+    },
     config = {
 	view:
 	{
@@ -39,6 +41,7 @@ loader =
 	    "generator_state": "login",
 	    'sessionStorage': { },
 	    'localStorage': { },
+	    'credential': '',
 	    'seek': function() {
 		if (this.count() >= this.maxseekcount()) {
 		    this.message("to go further, adjust max count");
@@ -118,7 +121,7 @@ loader =
 		this.maxseekcount(1024);
 		this.count(0);
 	    },
-	    "title": function() {
+	    "id": function() {
 		var
 		tmp="password generator",
 		map={
@@ -142,11 +145,14 @@ loader =
 		}
 		return tmp;
 	    },
+	    "title": function() {
+		return this.id();
+	    },
             "login": function() {
 		this.generator_state("select");
             },
 	    "open": function() {
-		if (this.credentials()) {
+		if (this.credential()) {
 		    this.generator_state("show");
 		} else {
 		    this.host("");
@@ -159,6 +165,25 @@ loader =
 		this.generator_state("select");
 	    },
 	    "done": function() {
+		var 
+		id = this.id(), 
+		obj;
+
+		obj = credentials[id];
+		if (!obj) {
+		    obj = { "id":  id };
+		    credentials[id] = obj;
+		}
+
+		obj.user = this.user();
+		obj.host = this.host();
+		obj.initial_template = this.initial_template();
+		obj.next_template = this.next_template();
+		obj.salt = this.salt();
+		obj.count = this.count();
+
+		this.credentials.update = true;
+
 		this.generator_state("select");
 	    },
 	    "logout": function() {
@@ -170,6 +195,11 @@ loader =
 		this.generator_state("show");
 	    },
 	    "credentials": function() {
+		var result = [ [ "", "-- add a credential --" ] ];
+		for (var c in credentials) {
+		   result.push([ c, c ]);
+		}
+		return result;
 	    }
 	},
 	bindings:
@@ -210,8 +240,14 @@ loader =
 		{
 		    model: "generator_state"
 		}),
-	     "sessionStorage": Binding.SESSION_STORAGE(),
-	     "localStorage": Binding.LOCAL_STORAGE()
+	    "sessionStorage": Binding.SESSION_STORAGE(),
+	    "localStorage": Binding.LOCAL_STORAGE(),
+	    "credential": Binding.OPTIONS({
+		model: { 
+		    value :  "credential", 
+		    options: "credentials" 
+		}
+	    })
 	}
     };
 
